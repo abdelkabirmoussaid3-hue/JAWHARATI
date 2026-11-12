@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جوهرتي الرقمية - JAWHARATI DIGITALE</title>
+<style>
+:root{--purple:#6A1B9A;--gold:#D4AF37;--bg:#FFF8F0;--dark:#2A1A35;--green:#2E7D32}
+*{box-sizing:border-box;font-family:'Segoe UI',Tahoma,Arial} body{margin:0;background:var(--bg);color:var(--dark)}
+header{background:linear-gradient(135deg,#4A148C,#6A1B9A);color:#fff;padding:14px;text-align:center;border-bottom:4px solid var(--gold)}
+header img{max-width:320px;width:90%;background:#fff;border-radius:16px;padding:8px}
+.safe{background:#E8F5E9;color:#2E7D32;padding:10px;border-radius:12px;font-weight:800;text-align:center;margin:10px 0;border:1px solid #A5D6A7}
+.badge{display:inline-block;background:var(--gold);color:#000;padding:5px 12px;border-radius:20px;font-weight:700;font-size:13px}
+.langbar{display:flex;justify-content:center;gap:6px;padding:10px;background:#fff;flex-wrap:wrap}
+.langbar button{border:2px solid var(--purple);background:#fff;color:var(--purple);padding:7px 13px;border-radius:20px;font-weight:800;cursor:pointer}
+.langbar button.active{background:var(--purple);color:#fff}
+nav{display:flex;gap:8px;overflow:auto;padding:12px;background:#fff;position:sticky;top:0;z-index:10;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+nav button{white-space:nowrap;border:2px solid var(--purple);background:#fff;color:var(--purple);padding:9px 14px;border-radius:20px;font-weight:700;cursor:pointer}
+nav button.active{background:var(--purple);color:#fff}
+.container{max-width:920px;margin:auto;padding:16px 14px 110px}
+.card{background:#fff;border-radius:16px;padding:18px;margin-bottom:16px;box-shadow:0 4px 14px rgba(0,0,0,.06);border-right:4px solid var(--gold)}
+.card h2{margin:0 0 10px;color:var(--purple)} .card h3{color:var(--purple)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px} @media(max-width:600px){.grid{grid-template-columns:1fr}}
+.stat{background:linear-gradient(135deg,#6A1B9A,#AB47BC);color:#fff;border-radius:14px;padding:16px;text-align:center}
+.btn{background:var(--purple);color:#fff;border:0;padding:12px;border-radius:12px;font-weight:700;cursor:pointer;width:100%;margin-top:8px}
+.btn-gold{background:var(--gold);color:#000} .btn-green{background:var(--green);color:#fff}
+input,select{width:100%;padding:12px;border:1.5px solid #ddd;border-radius:12px;margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:14px} th,td{padding:10px;border-bottom:1px solid #eee;text-align:right} th{background:#F3E5F5;color:var(--purple)}
+.alert{background:#FFF3CD;border:1px solid #FFE69C;padding:12px;border-radius:12px;font-size:14px}
+.alert-red{background:#FFEBEE;border:1px solid #FFCDD2}
+.hidden{display:none} .inst{border:1px solid #eee;border-radius:12px;padding:12px;margin-bottom:10px} .inst b{color:var(--purple)}
+.tag{display:inline-block;background:#F3E5F5;color:var(--purple);padding:3px 9px;border-radius:12px;font-size:12px;margin:2px}
+.service{display:inline-block;background:#E8F5E9;color:#2E7D32;padding:3px 8px;border-radius:12px;font-size:11px;margin:2px;font-weight:700}
+.scen{border:1px solid #E1BEE7;border-radius:14px;padding:14px;margin-bottom:12px}
+#chatBtn{position:fixed;left:16px;bottom:90px;background:var(--purple);color:#fff;width:62px;height:62px;border-radius:50%;border:3px solid var(--gold);font-size:28px;cursor:pointer;z-index:99}
+#chatBox{position:fixed;left:12px;right:12px;bottom:160px;max-width:420px;margin:auto;background:#fff;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:100;overflow:hidden;display:none}
+#chatBox.open{display:block} #chatHead{background:var(--purple);color:#fff;padding:14px;display:flex;justify-content:space-between}
+#chatMsgs{height:320px;overflow:auto;padding:12px;background:#FBF7FF} .msg{padding:10px;border-radius:14px;margin-bottom:8px;max-width:85%;font-size:14px;line-height:1.6}
+.msg.bot{background:#fff;border:1px solid #E1BEE7} .msg.user{background:var(--purple);color:#fff;margin-right:auto}
+.quick{display:flex;flex-wrap:wrap;gap:6px;padding:8px} .quick button{background:#F3E5F5;border:0;padding:7px 10px;border-radius:16px;font-size:12px;cursor:pointer;color:var(--purple);font-weight:700}
+#chatInput{display:flex;gap:6px;padding:10px;border-top:1px solid #eee} #chatInput input{flex:1} #chatInput button{width:70px;background:var(--gold);border:0;border-radius:12px;font-weight:800;cursor:pointer}
+#emerg{position:fixed;bottom:0;left:0;right:0;background:#fff;padding:10px;display:flex;gap:8px;z-index:90} #emerg a{flex:1;text-align:center;text-decoration:none;padding:12px;border-radius:12px;font-weight:800}
+.a-red{background:#D32F2F;color:#fff} .a-purple{background:var(--purple);color:#fff} .a-green{background:#2E7D32;color:#fff}
+</style>
+</head>
+<body>
+<header>
+<img src="logo.png" alt="JAWHARATI" onerror="this.style.display='none'">
+<h1 data-i18n="title">💎 جوهرتي الرقمية</h1><p data-i18n="slogan">أنتِ جوهرة و كرامتك الرقمية حقك</p>
+<div class="badge" data-i18n="hack">هاكاثون المعطيات المفتوحة • 21-22 دجنبر 2026 • الرباط</div>
+<div class="safe" style="background:#fff;color:#2E7D32;max-width:500px;margin:10px auto">✅ أنتِ في أمان هنا. لا نجمع اسمك، لا رقمك، لا صورك. كلشي سري.</div>
+</header>
+<div class="langbar">
+<button class="active" onclick="setLang('ar',this)">العربية</button><button onclick="setLang('fr',this)">Français</button><button onclick="setLang('en',this)">English</button><button onclick="setLang('am',this)">ⵜⴰⵎⴰⵣⵉⵖⵜ</button>
+</div>
+<nav>
+<button class="active" onclick="show('home',this)" data-i18n="nav_home">🏠 الرئيسية</button>
+<button onclick="show('map',this)" data-i18n="nav_map">🗺️ الجمعيات و الأرقام</button>
+<button onclick="show('rights',this)" data-i18n="nav_rights">⚖️ أعرفي حقوقك</button>
+<button onclick="show('scen',this)" data-i18n="nav_scen">🎭 12 سيناريو</button>
+<button onclick="show('guide',this)" data-i18n="nav_guide">📖 دليل التبليغ</button>
+<button onclick="show('legal',this)" data-i18n="nav_legal">📜 القانون يحميك</button>
+<button onclick="show('services',this)">💜 خدمات الجمعيات</button>
+</nav>
+<div class="container">
+
+<!-- HOME -->
+<div id="home">
+<div class="card"><h2 data-i18n="welcome">أنتِ لستِ وحدك 💜 أنتِ في أمان</h2><p data-i18n="welcome_txt">جوهرتي منصة للوقاية من العنف ضد النساء و القاصرات. هنا غادي تلقاي: حقوقك، أقرب جمعية ليك، و شنو تديري خطوة بخطوة. <b>ماشي ذنبك. أنتِ شجاعة. و كاين الحل.</b></p>
+<div class="grid"><div class="stat"><b>12</b><span>سيناريو تفاعلي</span></div><div class="stat"><b>35+</b><span>جمعية و خلية في كل المدن</span></div><div class="stat"><b>6</b><span>خدمات تقدمها الجمعيات</span></div><div class="stat"><b>4</b><span>لغات: عربية / فرنسية / إنجليزية / أمازيغية</span></div></div>
+<button class="btn" onclick="show('map',document.querySelectorAll('nav button')[1])">أين أتوجه؟ - أقرب جمعية ليك 🗺️</button>
+<button class="btn btn-gold" onclick="show('scen',document.querySelectorAll('nav button')[3])">جربي سيناريو 🎭</button>
+<button class="btn btn-green" onclick="openChat()">اسألي جوهرتي 💬 - سرية 100%</button></div>
+
+<div class="card"><h2 data-i18n="national">أرقام وطنية - تخدم جميع المدن - مجانية</h2>
+<table><tr><th>الخدمة</th><th>الرقم</th></tr>
+<tr><td>شرطة النجدة - تدخل فوري داخل المدن</td><td><a href="tel:19"><b>19</b></a></td></tr>
+<tr><td>الدرك الملكي - القرى و المناطق القروية</td><td><a href="tel:177"><b>177</b></a></td></tr>
+<tr><td>الوقاية المدنية - إسعاف</td><td><a href="tel:15"><b>15</b></a></td></tr>
+<tr><td>SAMU</td><td><a href="tel:141"><b>141</b></a></td></tr>
+<tr><td>الطوارئ من الهاتف المحمول</td><td><a href="tel:112"><b>112</b></a></td></tr>
+<tr><td><b>الرقم الأخضر الوطني الموحد - دعم نفسي و توجيه قانوني - طيلة الأسبوع</b></td><td><a href="tel:8350"><b style="font-size:18px;color:#2E7D32">8350</b></a></td></tr>
+<tr><td><b>مركز الإنصات الوطني ONDE - شكايات العنف ضد الأطفال و النساء</b></td><td><a href="tel:2511"><b>2511</b></a> / <a href="tel:0800002511"><b>0800-00-25-11</b></a></td></tr>
+<tr><td>قطب تتبع القضايا الجنائية - رئاسة النيابة العامة بالرباط</td><td><a href="tel:0537718848"><b>0537718848</b></a></td></tr>
+<tr><td>بوابة شكايات العنف ضد النساء</td><td>تقديم شكاوى رسمية و تتبعها عبر الإنترنت</td></tr></table>
+<div class="safe">💜 أنتِ في أمان. هاد الأرقام مجانية و سرية. ما تخافيش تتصلي.</div></div>
+</div>
+
+<!-- MAP / ASSOCIATIONS -->
+<div id="map" class="hidden">
+<div class="card"><h2>🗺️ الجمعيات و الخلايا - جميع المدن المغربية الرئيسية</h2><p>اختاري مدينتك، غادي يبانو ليك الجمعيات و الخلايا القريبة منك، مع الخدمات ديال كل وحدة.</p>
+<label>اختاري مدينتك / Choisis ta ville / Choose your city:</label>
+<select id="city" onchange="filterMap()">
+<option value="all">كل المدن - Toutes les villes - All Cities</option>
+<option value="الدار البيضاء">الدار البيضاء - Casablanca</option><option value="الرباط">الرباط - Rabat</option><option value="سلا">سلا - Salé</option><option value="تمارة">تمارة - Témara</option><option value="الخميسات">الخميسات - Khémisset</option><option value="تيفلت">تيفلت - Tiflet</option><option value="المحمدية">المحمدية - Mohammedia</option><option value="فاس">فاس - Fès</option><option value="مكناس">مكناس - Meknès</option><option value="مراكش">مراكش - Marrakech</option><option value="أكادير">أكادير - Agadir</option><option value="طنجة">طنجة - Tanger</option><option value="تطوان">تطوان - Tétouan</option><option value="وجدة">وجدة - Oujda</option><option value="القنيطرة">القنيطرة - Kénitra</option><option value="الجديدة">الجديدة - El Jadida</option><option value="آسفي">آسفي - Safi</option><option value="خريبكة">خريبكة - Khouribga</option><option value="بني ملال">بني ملال - Béni Mellal</option><option value="الرشيدية">الرشيدية - Errachidia</option><option value="ورزازات">ورزازات - Ouarzazate</option><option value="العيون">العيون - Laâyoune</option><option value="الداخلة">الداخلة - Dakhla</option><option value="الناظور">الناظور - Nador</option><option value="الحسيمة">الحسيمة - Al Hoceima</option><option value="الصويرة">الصويرة - Essaouira</option><option value="تارودانت">تارودانت - Taroudant</option><option value="قلعة السراغنة">قلعة السراغنة - Kelaât Sraghna</option>
+</select>
+<div id="instList" style="margin-top:12px"></div>
+<div class="alert">إلا ما لقيتيش مدينتك، تصلي بالرقم الأخضر <b>8350</b> أو <b>2511</b>، و غادي يوجهوك لأقرب مركز. أنتِ في أمان.</div>
+</div>
+</div>
+
+<!-- SERVICES -->
+<div id="services" class="hidden">
+<div class="card"><h2>💜 شنو كتقدم ليك الجمعيات؟ منظومة متكاملة لحمايتك</h2><p>الجمعيات و المراكز المتخصصة في المغرب كتقدم ليك منظومة متكاملة، مجانية و سرية، باش تحميك و تعاونك ترجعي قوية:</p></div>
+<div class="card"><h3>🏠 1. الإيواء الاستعجالي و المؤقت</h3><p>فضاءات و مراكز إيواء آمنة، مستقرة أو مؤقتة، ليك و لأطفالك، باش تحميك من الخطر الفوري. أنتِ و ولادك في أمان.</p></div>
+<div class="card"><h3>👂 2. الاستماع و الإنصات</h3><p>استقبالك في فضاء سري و آمن، باش تعبري على مشاكلك و تفرغي الضغوط النفسية، بلا حكم عليك. كيسمعو ليك و كيتيقو فيك.</p></div>
+<div class="card"><h3>💜 3. الدعم النفسي و المواكبة</h3><p>حصص دعم و توجيه نفسي مع أخصائيين، باش تعاوني تجاوزي آثار الصدمة و العنف، و ترجعي الثقة في راسك.</p></div>
+<div class="card"><h3>⚖️ 4. المواكبة القانونية و القضائية</h3><p>توجيهك للمساطر القانونية، تسهيل وصولك للقضاء، و المساعدة في إعداد الملفات: الطلاق، النفقة، إثبات النسب، التبليغ عن العنف. القانون معاك.</p></div>
+<div class="card"><h3>🤝 5. الوساطة الأسرية</h3><p>محاولة حل النزاعات العائلية بالطرق الحبية، لحماية استقرار الأسرة و مصلحة الأطفال، <b>إلا كان ذلك ممكن و آمن ليك</b>. سلامتك هي الأولى.</p></div>
+<div class="card"><h3>💰 6. التمكين الاقتصادي و الاجتماعي - الدعم المادي</h3><p>ورشات تدريبية و تكوين مهني: الخياطة، الحرف، الطبخ، دعم إنشاء التعاونيات، و محو الأمية، باش تحققي الاستقلال المالي و ما تبقايش محتاجة لحد. <b>أنتِ قادرة.</b></p></div>
+<div class="card"><div class="safe">كل هاد الخدمات مجانية و سرية. الجمعية ما غاديش تنشر قصتك، و ما غاديش تطلب منك شي حاجة في المقابل.</div></div>
+</div>
+
+<!-- RIGHTS -->
+<div id="rights" class="hidden">
+<div class="card"><h2>⚖️ أعرفي حقوقك - أنتِ محمية بالقانون</h2><div class="safe">القانون المغربي معاك. أنتِ ما درتي والو. المعتدي هو اللي غادي يتحاسب.</div></div>
+<div class="card"><h3>1. العنف الجسدي - الضرب، الدفع، الحرق</h3><p>القانون كيعاقب عليه. عندك الحق في شهادة طبية، و في الحماية، و في التبليغ. <b>أنتِ في أمان إلا بلغتي.</b></p></div>
+<div class="card"><h3>2. العنف النفسي - السب، الإهانة، التهديد، التحكم، العزل</h3><p>راه عنف حقيقي و معترف بيه قانونيا، ماشي "غير مشاكل". عندك الحق تطلبي الدعم النفسي و الحماية.</p></div>
+<div class="card"><h3>3. العنف الاقتصادي - منعك من العمل، أخذ فلوسك</h3><p>القانون كيحمي حقك في النفقة و في الاستقلال المالي. الجمعيات كتعاونك في التمكين الاقتصادي.</p></div>
+<div class="card"><h3>4. العنف الجنسي - أي فعل دون رضاك</h3><p>القانون كيحميك، و عندك الحق في التبليغ في سرية تامة، و في الدعم الطبي و النفسي.</p></div>
+<div class="card"><h3>5. العنف الإلكتروني - الابتزاز، التشهير، انتحال الهوية</h3><p>القانون كيعاقب على نشر صورك دون موافقتك، و على الابتزاز. وثقي كلشي، و ما تمسحي والو.</p></div>
+<div class="card"><h3>6. التحرش - في الشارع، العمل، المدرسة، الانترنت</h3><p>التحرش جريمة. عندك الحق تبلغي، و عندك الحق تحسي بالأمان في الشارع و في خدمتك و في مدرستك.</p></div>
+</div>
+
+<!-- SCENARIOS 12 -->
+<div id="scen" class="hidden">
+<div class="card"><h2>🎭 12 سيناريو رئيسي - جربي و تعلمي</h2><p>اختاري الجواب، و شوفي شنو هو التصرف الآمن. كل سيناريو كيعلمك خطوة تحميك.</p><div class="safe">هاد السيناريوهات افتراضية للتعلم فقط. أنتِ في أمان.</div></div>
+<div id="scenList"></div>
+</div>
+
+<!-- GUIDE -->
+<div id="guide" class="hidden">
+<div class="card"><h2>📖 دليل التبليغ - خطوة بخطوة، أنتِ في أمان</h2><div class="safe">التبليغ كيحميك و كيحمي بنات أخرين. أنتِ شجاعة إلا بلغتي.</div></div>
+
+<div class="card"><h3>🔴 أولا: التبليغ على العنف الجسدي - الضرب، الجرح</h3>
+<p><b>1. سلامتك أولا:</b> إلا كنتي في خطر دابا، تصلي بـ <b>19</b> أو <b>177</b> أو <b>15</b>، أو سيري لأقرب مركز أمان أو مستشفى.</p>
+<p><b>2. وثقي:</b> شهادة طبية من المستشفى، صور الإصابات مع التاريخ، احتفظي بالملابس الممزقة إلا كان.</p>
+<p><b>3. ما تمسحيش:</b> لا تمسحي الرسائل و لا الأدلة.</p>
+<p><b>4. توجهي:</b> لخلية التكفل في المحكمة، أو للشرطة القضائية، مع الشهادة الطبية. الجمعية تقدر ترافقك.</p>
+<p><b>5. طلبي الحماية:</b> الجمعية تقدر توفر ليك إيواء استعجالي ليك و لولادك.</p>
+<div class="safe">القانون 103.13 كيحميك من العنف الجسدي و كيعاقب المعتدي.</div></div>
+
+<div class="card"><h3>🟣 ثانيا: التبليغ على العنف النفسي - السب، التهديد، التحكم</h3>
+<p><b>1. عرفي أنه عنف:</b> السب، الإهانة قدام الناس، التهديد، التحكم في تليفونك و فلوسك، العزل على عائلتك - كاملين عنف نفسي.</p>
+<p><b>2. وثقي:</b> سجلي التواريخ، احتفظي برسائل التهديد، لقطات شاشة، شهادة الناس اللي شافو.</p>
+<p><b>3. طلبي الدعم النفسي:</b> تصلي بـ <b>8350</b> أو <b>2511</b>، أو سيري لمركز استماع. غادي يسمعو ليك بلا حكم.</p>
+<p><b>4. بلغي:</b> توجهي لخلية التكفل أو لجمعية، و هما غادي يوجهوك للمسطرة القانونية و للوساطة إلا كانت آمنة.</p>
+<p><b>5. ما تبقايش بوحدك:</b> عاودي تواصلي مع شخص تثقي فيه.</p>
+<div class="safe">العنف النفسي راه جريمة، و عندك الحق في الدعم النفسي و القانوني.</div></div>
+
+<div class="card"><h3>🟡 ثالثا: التبليغ على التحرش - في الشارع، العمل، المدرسة، الانترنت</h3>
+<p><b>1. التحرش في الشارع:</b> ما تجاوبيش، سيري لبلاصة عامرة بالناس، وثقي الوقت و المكان و وصف الشخص، و بلغي الشرطة 19.</p>
+<p><b>2. التحرش في العمل / المدرسة:</b> وثقي الرسائل و الشهود، بلغي الإدارة كتابة، و توجهي لخلية التكفل أو لجمعية. عندك الحق في بيئة آمنة.</p>
+<p><b>3. التحرش في الانترنت:</b> ما تمسحيش الرسائل، خدي لقطات شاشة مع التاريخ، بلوكي الحساب من بعد التوثيق، بلغي المنصة و الشرطة القضائية.</p>
+<p><b>4. إلا كان التحرش جنسي:</b> عندك الحق في التبليغ في سرية، و في الدعم الطبي و النفسي.</p>
+<div class="safe">التحرش جريمة يعاقب عليها القانون. أنتِ ما درتي والو، المتحرش هو المسؤول.</div></div>
+
+<div class="card"><h3>✅ قاعدة ذهبية للتبليغ كامل</h3>
+<p>1) وثقي 2) ما تمسحيش 3) ما ترسليش فلوس أو صور 4) بلوكي من بعد التوثيق 5) توجهي لخلية التكفل أو لجمعية 6) طلبي مرافقة - ما تمشيش بوحدك إلا قدرتي.</p>
+<div class="alert alert-red"><b>ما يجب تفاديه:</b> مسح الأدلة، التفاوض مع المبتز، إرسال صور أخرى، مشاركة القصة في العلن قبل التبليغ.</div></div>
+</div>
+
+<!-- LEGAL SIMPLIFIED -->
+<div id="legal" class="hidden">
+<div class="card"><h2>📜 القانون يحميك - بلا تعقيد، أنتِ في أمان</h2><p>هنا غادي تفهمي جوهر القوانين المغربية، كيفاش كتحميك أنتِ كفتاة و كامرأة، بلا مصطلحات صعيبة.</p><div class="safe">الخلاصة: القانون المغربي معاك، و أنتِ في أمان إلا طلبتي المساعدة.</div></div>
+
+<div class="card"><h3>💜 1. القانون 103.13 - قانونك الأول ضد العنف</h3><p><b>شنو كيقول ليك؟</b> أنتِ محمية من كل أنواع العنف: الجسدي، النفسي، الجنسي، الاقتصادي، الإلكتروني.</p><p><b>كيفاش كيحميك؟</b> كيخلق خلايا للتكفل بيك في المحكمة و المستشفى، و كيعاقب المعتدي. <b>أنتِ في أمان، و عندك بلاصة تمشي ليها.</b></p></div>
+
+<div class="card"><h3>🔒 2. القانون 09.08 - قانون حماية معطياتك</h3><p><b>شنو كيقول ليك؟</b> صورتك، اسمك، رقمك، قصتك - ديالك أنتِ، و تا واحد ما عندو الحق يجمعهم أو ينشرهم بلا إذنك.</p><p><b>كيفاش كيحميك؟</b> الجمعية و المنصة و الإدارة ما عندهمش الحق ينشرو قصتك. <b>سرك في أمان.</b></p></div>
+
+<div class="card"><h3>📖 3. القانون 31.13 - حقك في المعلومة</h3><p><b>شنو كيقول ليك؟</b> عندك الحق تعرفي حقوقك، و تعرفي فين تمشي، و تطلبي المعلومة من الإدارة.</p><p><b>كيفاش كيحميك؟</b> ما غاديش تبقاي تائهة. المعلومة حقك، و جوهرتي هنا باش توصلك ليها. <b>أنتِ ما بوحدكش.</b></p></div>
+
+<div class="card"><h3>🔐 4. القانون 53.05 و 43.20 - قانون حمايتك الرقمية</h3><p><b>شنو كيقول ليك؟</b> معطياتك الرقمية محمية بالتشفير، و المعاملات الإلكترونية عندها خدمات ثقة تحميك.</p><p><b>كيفاش كيحميك؟</b> إلا هددك شي واحد بصورك في الانترنت، القانون كيعاقبو، و كيحمي الأدلة ديالك. <b>الانترنت ما كيعنيش أنك بلا حماية.</b></p></div>
+
+<div class="card"><h3>👧 5. مصلحة الطفل الفضلى - حماية خاصة للقاصرات</h3><p><b>شنو كيقول ليك؟</b> إلا كنتي قاصر، القانون كيعطيك حماية مضاعفة، و مصلحتك هي الأولى قبل أي حاجة.</p><p><b>كيفاش كيحميك؟</b> كاين مسارات خاصة بحماية الطفولة، و مركز الإنصات <b>2511</b> خاص بالأطفال و النساء. <b>أنتِ غالية، و القانون كيحميك بزاف.</b></p></div>
+
+<div class="card"><div class="safe">💜 الخلاصة: في المغرب، القانون كيقول ليك: أنتِ جوهرة، و كرامتك حقك، و أنتِ في أمان إلا طلبتي المساعدة. تصلي بـ 8350 أو 2511، و غادي تلقاي شكون يسمع ليك.</div></div>
+</div>
+
+<footer>جوهرتي الرقمية © 2026 • data.gov.ma • HCP • وزارة التضامن • mahakim.ma • رئاسة النيابة العامة • alhimaya.ma • ONDE</footer>
+</div>
+
+<button id="chatBtn" onclick="openChat()">💬</button>
+<div id="chatBox"><div id="chatHead"><div><b>💎 جوهرتي</b><small data-i18n="chat_sub">مساعدة رقمية • إرشاد عام و ليس استشارة قانونية</small></div><button onclick="closeChat()" style="background:none;border:0;color:#fff;font-size:20px;cursor:pointer">×</button></div>
+<div id="chatMsgs"></div>
+<div class="quick"><button onclick="quickQ('شنو هي حقوقي؟')">شنو هي حقوقي؟</button><button onclick="quickQ('فين نمشي في مدينتي؟')">فين نمشي؟</button><button onclick="quickQ('شنو ندير إلا هددني شي واحد بصوري؟')">هددني بصوري؟</button><button onclick="quickQ('شنو كتقدم الجمعية؟')">شنو كتقدم الجمعية؟</button><button onclick="quickQ('رقم مراكش؟')">رقم مراكش؟</button></div>
+<div id="chatInput"><input id="q" placeholder="سولي جوهرتي... / Posez votre question..."><button onclick="sendQ()">إرسال</button></div></div>
+<div id="emerg"><a class="a-red" href="tel:19">🚨 19</a><a class="a-purple" href="tel:177">177</a><a class="a-green" href="tel:8350">8350 💜</a><a class="a-purple" href="#" onclick="helpMsg();return false">💌 <span data-i18n="help_btn">اطلبي المساعدة</span></a></div>
+
+<script>
+const I18N={
+ar:{title:"💎 جوهرتي الرقمية",slogan:"أنتِ جوهرة و كرامتك الرقمية حقك",hack:"هاكاثون المعطيات المفتوحة • 21-22 دجنبر 2026 • الرباط",nav_home:"🏠 الرئيسية",nav_map:"🗺️ الجمعيات و الأرقام",nav_rights:"⚖️ أعرفي حقوقك",nav_scen:"🎭 12 سيناريو",nav_guide:"📖 دليل التبليغ",nav_legal:"📜 القانون يحميك",welcome:"أنتِ لستِ وحدك 💜 أنتِ في أمان",welcome_txt:"جوهرتي منصة للوقاية من العنف ضد النساء و القاصرات. هنا غادي تلقاي: حقوقك، أقرب جمعية ليك، و شنو تديري خطوة بخطوة. ماشي ذنبك. أنتِ شجاعة. و كاين الحل.",national:"أرقام وطنية - تخدم جميع المدن - مجانية",chat_sub:"مساعدة رقمية • إرشاد عام و ليس استشارة قانونية",help_btn:"اطلبي المساعدة"},
+fr:{title:"💎 JAWHARATI DIGITALE",slogan:"Tu es un joyau et ta dignité numérique est ton droit",hack:"Hackathon Open Data • 21-22 Décembre 2026 • Rabat",nav_home:"🏠 Accueil",nav_map:"🗺️ Associations & Numéros",nav_rights:"⚖️ Connaître tes droits",nav_scen:"🎭 12 Scénarios",nav_guide:"📖 Guide de signalement",nav_legal:"📜 La loi te protège",welcome:"Tu n'es pas seule 💜 Tu es en sécurité",welcome_txt:"Jawharati est une plateforme de prévention de la violence contre les femmes et les filles. Tu trouveras ici tes droits, l'association la plus proche, et quoi faire étape par étape. Ce n'est pas ta faute. Tu es courageuse.",national:"Numéros nationaux - Toutes les villes - Gratuits",chat_sub:"Assistante numérique • Orientation générale",help_btn:"Demander de l'aide"},
+en:{title:"💎 JAWHARATI DIGITALE",slogan:"You are a jewel and your digital dignity is your right",hack:"Open Data Hackathon • 21-22 December 2026 • Rabat",nav_home:"🏠 Home",nav_map:"🗺️ Associations & Numbers",nav_rights:"⚖️ Know Your Rights",nav_scen:"🎭 12 Scenarios",nav_guide:"📖 Reporting Guide",nav_legal:"📜 The Law Protects You",welcome:"You are not alone 💜 You are safe",welcome_txt:"Jawharati is a platform to prevent violence against women and girls. Here you will find your rights, the nearest association, and what to do step by step. It is not your fault. You are brave.",national:"National Numbers - All Cities - Free",chat_sub:"Digital assistant • General guidance",help_btn:"Ask for help"},
+am:{title:"💎 ⵜⴰⵡⵀⴰⵔⵜ ⵜⴰⴷⵉⵊⵉⵜⴰⵍⵜ",slogan:"ⴽⵎⵎ ⴷ ⵜⴰⵖⴰⵡⵙⴰ ⵢⵓⵔ ⵜⵉⵎⵎⵓⵖⵔⴰ ⵜⴰⴷⵉⵊⵉⵜⴰⵍⵜ ⵏⵏⵎ ⴷ ⴰⵣⵔⴼ ⵏⵏⵎ",hack:"ⵀⴰⴽⴰⵜⵓⵏ ⵏ ⵉⵙⴼⴽⴰ ⵉⵔⵣⵎⵏ • 21-22 ⴷⵓⵊⴰⵏⴱⵉⵔ 2026 • ⵕⵕⴱⴰⵟ",nav_home:"🏠 ⴰⵙⵏⵓⴱⴳ",nav_map:"🗺️ ⵜⵉⵎⵙⵙⵓⵏⵜⵉⵏ ⴷ ⵓⵟⵟⵓⵏⵏ",nav_rights:"⚖️ ⵙⵙⵏ ⵉⵣⵔⴼⴰⵏ ⵏⵏⵎ",nav_scen:"🎭 12 ⵉⵙⵓⵔⴰⵔⵏ",nav_guide:"📖 ⴰⵏⵎⴰⵍ ⵏ ⵓⵙⵙⵉⵅⴼ",nav_legal:"📜 ⴰⵣⵔⴼ ⴰⴷ ⴽⵎ ⵉⵃⴹⵓ",welcome:"ⵓⵔ ⵜⵍⵍⵉⴷ ⵉⵎⴰⵏ ⵏⵏⵎ 💜 ⵜⵍⵍⵉⴷ ⴳ ⵓⵙⴰⵍⴰⵙ",welcome_txt:"ⵜⴰⵡⵀⴰⵔⵜ ⴷ ⴰⵖⴰⵡⴰⵙ ⵉ ⵓⵙⴱⵓⵖⵍⵓ ⵏ ⵓⵍⴰⵖ ⵎⴳⴰⵍ ⵜⵉⵡⵜⵎⵉⵏ. ⴷⴰ ⴰⴷ ⵜⴰⴼⴷ ⵉⵣⵔⴼⴰⵏ ⵏⵏⵎ, ⵜⴰⵎⵙⵙⵓⵏⵜ ⵜⴰⵇⵔⵉⴱⵜ, ⴷ ⵎⴰⵢⴷ ⴰⴷ ⵜⵙⴽⵔⴷ.",national:"ⵓⵟⵟⵓⵏⵏ ⵉⵏⴰⵎⵓⵔⵏ - ⵜⵉⵖⵔⵎⵉⵏ ⵎⴰⵕⵕⴰ",chat_sub:"ⵜⴰⵎⵢⴰⵡⴰⵙⵜ ⵜⴰⴷⵉⵊⵉⵜⴰⵍⵜ",help_btn:"ⵙⵙⵓⵜⵔ ⵜⵉⵡⵉⵙⵉ"}
+};
+let curLang='ar';
+function setLang(l,btn){curLang=l;document.querySelectorAll('.langbar button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.documentElement.lang=l;document.documentElement.dir=(l==='ar'||l==='am')?'rtl':'ltr';document.querySelectorAll('[data-i18n]').forEach(el=>{let k=el.getAttribute('data-i18n');if(I18N[l][k]) el.innerHTML=I18N[l][k]});}
+
+// --- ALL ASSOCIATIONS + COURTS ---
+const insts=[
+{c:"الدار البيضاء",n:"الجمعية المغربية لحقوق النساء AMDF - الدار البيضاء",a:"حقوق النساء، استماع، دعم قانوني",t:"0522451535",f:"-",s:"جمعية",serv:"استماع | دعم قانوني | دعم نفسي | تمكين اقتصادي"},
+{c:"الدار البيضاء",n:"الجمعية المغربية لمحاربة العنف ضد النساء AMVEF",a:"مركز استماع، توجيه قانوني، دعم نفسي",t:"0522268667",f:"-",s:"جمعية",serv:"استماع | دعم قانوني | دعم نفسي | إيواء"},
+{c:"الدار البيضاء",n:"جمعية إنصاف للمرأة و الطفل",a:"حماية المرأة و الطفل",t:"contact@insalf.ma",f:"-",s:"جمعية",serv:"استماع | دعم نفسي | تمكين اقتصادي"},
+{c:"الدار البيضاء",n:"جمعية التضامن النسوي - الأمهات العازبات",a:"دعم و إدماج الأمهات العازبات و النساء في وضعية صعبة",t:"0522254646",f:"-",s:"جمعية",serv:"إيواء | دعم مادي | تمكين اقتصادي | دعم نفسي"},
+{c:"الدار البيضاء",n:"محكمة الاستئناف - الدار البيضاء",a:"خلية النيابة العامة للتكفل",t:"0666149041",f:"0522308769",s:"خلية تكفل",serv:"مواكبة قانونية | قضائية"},
+{c:"الدار البيضاء",n:"المحكمة الابتدائية الزجرية - الدار البيضاء",a:"خلية النيابة العامة للضحايا",t:"0665794224",f:"0522673606",s:"خلية تكفل",serv:"مواكبة قانونية"},
+{c:"الدار البيضاء",n:"المحكمة الاجتماعية - قضاء الأسرة",a:"خلية التكفل بالنساء و الأطفال - نفقة و نزاعات أسرية",t:"0663760948",f:"0522938575",s:"خلية تكفل",serv:"مواكبة قانونية | وساطة أسرية"},
+{c:"الرباط",n:"الجمعية الديمقراطية لنساء المغرب ADFM - الرباط",a:"حقوق النساء، استماع، دعم قانوني",t:"0537730961",f:"-",s:"جمعية",serv:"استماع | دعم قانوني | تمكين اقتصادي"},
+{c:"الرباط",n:"المنظمة المغربية لحقوق الإنسان OMDH",a:"حقوق الإنسان، دعم قانوني",t:"0537770060",f:"-",s:"منظمة",serv:"دعم قانوني | استماع"},
+{c:"الرباط",n:"محكمة الاستئناف - الرباط",a:"خلية التكفل القضائي",t:"0537564202",f:"0537564196",s:"خلية تكفل",serv:"مواكبة قانونية"},
+{c:"الرباط",n:"المحكمة الابتدائية - الرباط",a:"خلية التكفل القضائي",t:"0537738903",f:"0537726841",s:"خلية تكفل",serv:"مواكبة قانونية"},
+{c:"سلا",n:"المحكمة الابتدائية - سلا",a:"خلية النيابة العامة للتكفل",t:"0537807079",f:"0537811299",s:"خلية تكفل",serv:"مواكبة قانونية"},
+{c:"تمارة",n:"المحكمة الابتدائية - تمارة",a:"خلية النيابة العامة للتكفل",t:"0537643462",f:"0537643462",s:"خلية تكفل",serv:"مواكبة قانونية"},
+{c:"الخميسات",n:"المحكمة الابتدائية - الخميسات",a:"خلية النيابة العامة للتكفل",t:"0537552929",f:"0537552929",s:"خلية تكفل",serv:"مواكبة قانونية"},
+{c:"تيفلت",n:"المحكمة الابتدائية - تيفلت",a:"خلية النيابة العامة للتكفل",t:"0537511803",f:"0537512115",s:"خلية تكفل",serv:"مواكبة قانونية"},
+{c:"المحمدية",n:"المحكمة الابتدائية - المحمدية",a:"خلية النيابة العامة للتكفل",t:"0661143037",f:"0523301895",s:"خلية تكفل",serv:"مواكبة قانونية"},
+{c:"طنجة",n:"جمعية آمنة لحماية النساء و الأطفال - طنجة",a:"مركز استماع و إيواء استعجالي",t:"associationamna.com",f:"-",s:"جمعية",serv:"إيواء استعجالي | استماع | دعم نفسي | دعم قانوني"},
+{c:"تطوان",n:"جمعية الأمل النسائية - تطوان",a:"مركز الأمل للإرشاد الأسري",t:"alamal.ma",f:"-",s:"جمعية",serv:"استماع | إرشاد أسري | وساطة أسرية | دعم نفسي"},
+{c:"تطوان",n:"التحالف المغربي للمرأة و التنمية و التكوين - تطوان",a:"تنمية و تكوين المرأة",t:"0539963455",f:"-",s:"جمعية",serv:"تمكين اقتصادي | تكوين مهني | استماع"},
+{c:"فاس",n:"جمعية مبادرات لحماية حقوق النساء IPDF - فاس",a:"حماية حقوق النساء",t:"0535733560",f:"-",s:"جمعية",serv:"استماع | دعم قانوني | دعم نفسي"},
+{c:"فاس",n:"جمعية أفق للمرأة - فاس",a:"دعم المرأة",t:"0535659173",f:"-",s:"جمعية",serv:"استماع | تمكين اقتصادي | دعم نفسي"},
+{c:"مراكش",n:"محكمة الاستئناف - مراكش",a:"خلية النيابة العامة للتكفل",t:"0524447323",f:"0524449904",s:"خلية تكفل",serv:"مواكبة قانونية"},
+{c:"مراكش",n:"فيدرالية الرابطة الديمقراطية لحقوق المرأة - مراكش",a:"خط ساخن للاستماع و الإرشاد",t:"0610643093",f:"-",s:"جمعية",serv:"استماع | إرشاد قانوني | دعم نفسي"},
+{c:"مراكش",n:"جمعية الأمان لتنمية المرأة - مراكش",a:"دعم نفسي و اجتماعي",t:"0668164703",f:"-",s:"جمعية",serv:"دعم نفسي | دعم اجتماعي | إيواء"},
+{c:"مراكش",n:"جمعية وداد للتنمية - أولاد حسون",a:"خدمات لنساء ضحايا العنف",t:"0667409308",f:"-",s:"جمعية",serv:"استماع | دعم نفسي | تمكين اقتصادي"},
+{c:"مراكش",n:"جمعية البسمة - سيدي الزوين",a:"تنمية المرأة و الطفل",t:"0662320478",f:"-",s:"جمعية",serv:"استماع | دعم نفسي | دعم مادي"},
+{c:"مراكش",n:"جمعية اتحاد العمل النسائي - مراكش",a:"خدمات لنساء ضحايا العنف",t:"066123093",f:"-",s:"جمعية",serv:"استماع | تمكين اقتصادي"},
+{c:"مراكش",n:"جمعية النور و العرفان - واحة سيدي ابراهيم",a:"خدمات لنساء ضحايا العنف",t:"0661618026",f:"-",s:"جمعية",serv:"استماع | دعم اجتماعي"},
+{c:"قلعة السراغنة",n:"جمعية الترابط الثقافي الاجتماعي - قلعة السراغنة",a:"استقبال، استماع، إرشاد، توجيه قانوني، إدماج",t:"0666130603",f:"-",s:"جمعية",serv:"استماع | إرشاد قانوني | إدماج | دعم نفسي"},
+{c:"أكادير",n:"جمعية صوت الطفل و المرأة - أكادير",a:"حماية الطفل و المرأة",t:"0528820866",f:"-",s:"جمعية",serv:"استماع | دعم نفسي | دعم قانوني"},
+{c:"الرشيدية",n:"المحكمة الابتدائية - الرشيدية",a:"خلية النيابة العامة للتكفل",t:"070010441",f:"0535572148",s:"خلية تكفل",serv:"مواكبة قانونية"},
+{c:"الداخلة",n:"المحكمة الابتدائية بوادي الذهب - الداخلة",a:"خلية النيابة العامة للتكفل",t:"0667792489",f:"0528893708",s:"خلية تكفل",serv:"مواكبة قانونية"},
+{c:"ورزازات",n:"الجمعية الأمازيغية لمساندة الضحايا - ورزازات",a:"إرشاد اجتماعي و مساندة قانونية",t:"فاكس فقط",f:"0524888288",s:"جمعية",serv:"إرشاد | مساندة قانونية"},
+{c:"مكناس",n:"فضاء متعدد الوظائف للنساء - مكناس",a:"استماع و دعم - عبر الرقم الأخضر 8350 للتوجيه",t:"8350",f:"-",s:"فضاء",serv:"استماع | دعم نفسي | تمكين اقتصادي"},
+{c:"وجدة",n:"فضاء متعدد الوظائف للنساء - وجدة",a:"استماع و دعم - عبر الرقم الأخضر 8350",t:"8350",f:"-",s:"فضاء",serv:"استماع | دعم نفسي | تمكين اقتصادي"},
+{c:"القنيطرة",n:"فضاء متعدد الوظائف للنساء - القنيطرة",a:"استماع و دعم - عبر الرقم الأخضر 8350",t:"8350",f:"-",s:"فضاء",serv:"استماع | دعم نفسي"},
+{c:"الجديدة",n:"فضاء متعدد الوظائف للنساء - الجديدة",a:"استماع و دعم - عبر الرقم الأخضر 8350",t:"8350",f:"-",s:"فضاء",serv:"استماع | دعم نفسي | تمكين اقتصادي"},
+{c:"آسفي",n:"فضاء متعدد الوظائف للنساء - آسفي",a:"استماع و دعم - عبر الرقم الأخضر 8350",t:"8350",f:"-",s:"فضاء",serv:"استماع | دعم نفسي"},
+{c:"خريبكة",n:"فضاء متعدد الوظائف للنساء - خريبكة",a:"استماع و دعم - عبر الرقم الأخضر 8350",t:"8350",f:"-",s:"فضاء",serv:"استماع | تمكين اقتصادي"},
+{c:"بني ملال",n:"فضاء متعدد الوظائف للنساء - بني ملال",a:"استماع و دعم - عبر الرقم الأخضر 8350",t:"8350",f:"-",s:"فضاء",serv:"استماع | دعم نفسي"},
+{c:"العيون",n:"فضاء متعدد الوظائف للنساء - العيون",a:"استماع و دعم - عبر الرقم الأخضر 8350",t:"8350",f:"-",s:"فضاء",serv:"استماع | دعم نفسي"},
+{c:"الناظور",n:"فضاء متعدد الوظائف للنساء - الناظور",a:"استماع و دعم - عبر الرقم الأخضر 8350",t:"8350",f:"-",s:"فضاء",serv:"استماع | دعم نفسي"},
+{c:"الحسيمة",n:"فضاء متعدد الوظائف للنساء - الحسيمة",a:"استماع و دعم - عبر الرقم الأخضر 8350",t:"8350",f:"-",s:"فضاء",serv:"استماع | دعم نفسي"},
+{c:"الصويرة",n:"فضاء متعدد الوظائف للنساء - الصويرة",a:"استماع و دعم - عبر الرقم الأخضر 8350",t:"8350",f:"-",s:"فضاء",serv:"استماع | تمكين اقتصادي"},
+{c:"تارودانت",n:"فضاء متعدد الوظائف للنساء - تارودانت",a:"استماع و دعم - عبر الرقم الأخضر 8350",t:"8350",f:"-",s:"فضاء",serv:"استماع | دعم نفسي"},
+];
+function show(id,btn){document.querySelectorAll('.container > div').forEach(d=>d.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');window.scrollTo(0,0)}
+function filterMap(){let v=document.getElementById('city').value;let list=document.getElementById('instList');list.innerHTML='';insts.filter(i=>v==='all'||i.c===v).forEach(i=>{list.innerHTML+=`<div class="inst"><b>${i.n}</b><br><small>${i.a} • ${i.c}</small><br>📞 <a href="tel:${i.t}">${i.t}</a> ${i.f!=='-'?' • فاكس: '+i.f:''} • <span class="tag">${i.s}</span><br><small>خدمات: ${i.serv}</small><br><div style="margin-top:6px">${i.serv.split('|').map(s=>`<span class="service">${s.trim()}</span>`).join('')}</div></div>`});if(list.innerHTML==='')list.innerHTML='<p>في هاد المدينة، تصلي بالرقم الأخضر <b>8350</b> أو <b>2511</b> و غادي يوجهوك لأقرب مركز. أنتِ في أمان.</p>'}
+filterMap();
+
+// --- 12 SCENARIOS ---
+const scenarios=[
+{t:"1. ابتزاز بصور خاصة",q:"شخص كيهددك ينشر صورك إلا ما رسلتيش ليه فلوس. شنو تديري؟",a:"نرسل ليه الفلوس باش يسكت",b:"نوثق الرسائل، ما نرسل والو، و نتوجه لخلية التكفل",ok:"صحيح! التوثيق و عدم الإرسال هو الحل. القانون 103.13 كيعاقب المبتز. أنتِ في أمان."},
+{t:"2. عنف جسدي في الدار - الضرب",q:"شخص في الدار كيضربك. شنو تديري أول حاجة؟",a:"نسكت و نصبر",b:"نحمي راسي، نتصل بـ 19 أو 15، و نمشي للمستشفى لشهادة طبية",ok:"صحيح! سلامتك أولا. شهادة طبية + خلية التكفل = حمايتك. أنتِ في أمان."},
+{t:"3. عنف نفسي - السب و الإهانة كل نهار",q:"شخص كيسبك و كيهينك و كيقول ليك أنتِ والو. شنو تديري؟",a:"نقول مع راسي هذا ماشي عنف",b:"نعرف أنه عنف نفسي، نوثق، و نتصل بـ 8350 للدعم النفسي",ok:"صحيح! السب و الإهانة راه عنف نفسي معترف بيه. أنتِ تستاهلي الاحترام."},
+{t:"4. تحرش في الشارع",q:"شخص في الشارع كيتبعك و كيقول كلام خايب. شنو تديري؟",a:"نجاوبو و نتعاير معاه",b:"نمشي لبلاصة عامرة، نوثق الوقت و المكان، و نبلغ الشرطة 19",ok:"صحيح! ما تجاوبيش، سيري لبلاصة آمنة و بلغي. التحرش جريمة."},
+{t:"5. تحرش في الانترنت - رسائل خايبة",q:"حساب مجهول كيرسل ليك رسائل تحرش. شنو تديري؟",a:"نمسح كلشي و نسكت",b:"نوثق بلقطات شاشة، نبلوكي من بعد التوثيق، و نبلغ المنصة",ok:"صحيح! التوثيق أولا، ثم البلوك. أنتِ في أمان."},
+{t:"6. تحرش في العمل / المدرسة",q:"شخص في الخدمة / المدرسة كيتحرش بيك. شنو تديري؟",a:"نسكت خوفا من الفضيحة",b:"نوثق بالشهود و الرسائل، نبلغ الإدارة كتابة، و نتوجه لجمعية",ok:"صحيح! عندك الحق في بيئة آمنة. القانون معاك."},
+{t:"7. تشهير - نشر كلام كاذب عليك",q:"شخص كينشر عليك كلام كاذب في مجموعات. شنو تديري؟",a:"ننشر عليه تا أنا",b:"نوثق المنشورات، نبلغ المنصة، و نتوجه لخلية التكفل",ok:"صحيح! ما ترديش بنفس الطريقة. التوثيق و التبليغ هو الحل القانوني."},
+{t:"8. انتحال هوية - حساب وهمي باسميتك",q:"شخص دار حساب باسميتك و صورتك. شنو تديري؟",a:"ندخل نتعاير معاه في الحساب",b:"نوثق الحساب، نبلغ المنصة أنه مزور، و نتوجه لخلية التكفل",ok:"صحيح! انتحال الهوية جريمة. بلغي و وثقي."},
+{t:"9. استدراج قاصر - شخص كبير كيتقرب من بنت صغيرة",q:"شخص كبير كيحاول يتقرب من قاصر في الانترنت. شنو تدير القاصر؟",a:"تبقى تهضر معاه باش ما يغضبش",b:"تقطع التواصل فورا، تخبر شخص تثق فيه، و تتصل بـ 2511",ok:"صحيح! القاصر في حماية مضاعفة. 2511 خاص بالأطفال و النساء. أنتِ غالية."},
+{t:"10. عنف اقتصادي - منعك من العمل و أخذ فلوسك",q:"شخص كيمنعك تخدمي و كياخد فلوسك. شنو تديري؟",a:"نقبل حيت ما عندي حل",b:"نطلب الدعم من جمعية للتمكين الاقتصادي و من خلية التكفل للنفقة",ok:"صحيح! عندك الحق في النفقة و في الاستقلال المالي. الجمعية كتعاونك في التكوين و التعاونيات."},
+{t:"11. مطاردة - شخص كيتبعك في كل بلاصة",q:"شخص كيتبعك و كيراقبك. شنو تديري؟",a:"نبدل طريقي و نسكت",b:"نوثق الأوقات و الأماكن، نخبر شخص تثق فيه، و نبلغ الشرطة 19",ok:"صحيح! المطاردة خطيرة. ما تبقايش بوحدك، بلغي و طلبي الحماية."},
+{t:"12. تهديد بالزواج القسري",q:"شخص كيهددك بالزواج بلا رضاك. شنو تديري؟",a:"نقبل خوفا",b:"نرفض، نتصل بـ 8350 أو 2511، و نتوجه لجمعية و خلية التكفل",ok:"صحيح! الزواج بلا رضاك مرفوض قانونيا. أنتِ حرة، و القانون كيحميك."},
+];
+let scenHTML=''; scenarios.forEach((s,i)=>{scenHTML+=`<div class="scen"><h3>${s.t}</h3><p>${s.q}</p><button class="btn" onclick="answerS(${i},'a')">أ) ${s.a}</button><button class="btn btn-gold" onclick="answerS(${i},'b')">ب) ${s.b}</button><div id="rs${i}" class="alert hidden" style="margin-top:8px"></div></div>`}); document.getElementById('scenList').innerHTML=scenHTML;
+function answerS(i,choice){let el=document.getElementById('rs'+i);el.classList.remove('hidden');if(choice==='b'){el.innerHTML='✅ '+scenarios[i].ok;el.style.background='#E8F5E9'}else{el.innerHTML='❌ هذا كيزيد الخطر. الصحيح: '+scenarios[i].b+' - أنتِ في أمان إلا اختاريتي الصح.';el.style.background='#FFEBEE'}}
+function helpMsg(){let txt=encodeURIComponent('أحتاج المساعدة، أنا في وضع صعب، عافاك تواصلي معايا');window.open('https://wa.me/?text='+txt,'_blank')}
+function openChat(){document.getElementById('chatBox').classList.add('open');if(document.getElementById('chatMsgs').innerHTML===''){let m={ar:'أهلا بيك 💜 أنا جوهرتي. أنا هنا باش نعاونك. أنتِ في أمان، و أنا أداة إرشاد عام. ما تبارطاجيش معايا اسمك أو رقمك أو صورك.',fr:'Bonjour 💜 Je suis Jawharati. Tu es en sécurité ici.',en:'Hello 💜 I am Jawharati. You are safe here.',am:'ⴰⵣⵓⵍ 💜 ⵏⴽⴽ ⴷ ⵜⴰⵡⵀⴰⵔⵜ. ⵜⵍⵍⵉⴷ ⴳ ⵓⵙⴰⵍⴰⵙ.'};botSay(m[curLang]||m.ar)}}
+function closeChat(){document.getElementById('chatBox').classList.remove('open')}
+function botSay(t){let m=document.getElementById('chatMsgs');m.innerHTML+=`<div class="msg bot">${t}</div>`;m.scrollTop=m.scrollHeight}
+function userSay(t){let m=document.getElementById('chatMsgs');m.innerHTML+=`<div class="msg user">${t}</div>`;m.scrollTop=m.scrollHeight}
+function quickQ(q){userSay(q);setTimeout(()=>botSay(getAnswer(q)),400)}
+function sendQ(){let i=document.getElementById('q');if(!i.value.trim())return;let q=i.value;userSay(q);i.value='';setTimeout(()=>botSay(getAnswer(q)),400)}
+function getAnswer(q){let l=q.toLowerCase();
+if(l.includes('خطر')||l.includes('danger')||l.includes('قاصر')||l.includes('ضرب')) return '⚠️ إلا كنتي في خطر دابا: الشرطة <b>19</b>، الدرك <b>177</b>، الإسعاف <b>15</b>، الرقم الأخضر <b>8350</b>، ONDE <b>2511</b>. أنتِ في أمان، ماشي ذنبك.';
+if(l.includes('صور')||l.includes('هدد')||l.includes('chantage')) return '1) ما تمسحيش الرسائل 2) خدي لقطات شاشة 3) بلوكي بعد التوثيق 4) توجهي لخلية التكفل. القانون 103.13 كيعاقب المبتز. أنتِ في أمان.';
+if(l.includes('جمعية')||l.includes('خدمات')||l.includes('service')) return 'الجمعيات كتقدم ليك: <b>إيواء استعجالي، استماع، دعم نفسي، مواكبة قانونية، وساطة أسرية، تمكين اقتصادي (تكوين، تعاونيات، دعم مادي)</b>. كاملين مجانيين و سريين. تصلي بـ 8350 باش يوجهوك.';
+if(l.includes('رشيدية')||l.includes('errachidia')) return 'الرشيدية: المحكمة الابتدائية - خلية التكفل: <b>070010441</b>، فاكس: 0535572148. وطني: 19 - 177 - 15 - 8350 - 2511';
+if(l.includes('مراكش')||l.includes('marrakech')) return 'مراكش:<br>• الاستئناف: <b>0524447323</b><br>• الرابطة: <b>0610643093</b><br>• الأمان: <b>0668164703</b><br>• وداد: <b>0667409308</b><br>• البسمة: <b>0662320478</b><br>• اتحاد العمل النسائي: <b>066123093</b><br>• النور و العرفان: <b>0661618026</b>';
+if(l.includes('دار البيضاء')||l.includes('casablanca')) return 'الدار البيضاء:<br>• AMDF: <b>0522451535</b><br>• AMVEF: <b>0522268667</b><br>• التضامن النسوي: <b>0522254646</b><br>• الاستئناف: <b>0666149041</b>';
+if(l.includes('رباط')||l.includes('rabat')) return 'الرباط:<br>• ADFM: <b>0537730961</b><br>• OMDH: <b>0537770060</b><br>• الاستئناف: <b>0537564202</b><br>• النيابة العامة: <b>0537718848</b>';
+if(l.includes('حقوق')||l.includes('droit')||l.includes('right')) return 'حقوقك: القانون 103.13 كيحميك من العنف الجسدي، النفسي، الجنسي، الاقتصادي، الإلكتروني. عندك الحق في الحماية، في التبليغ في سرية، و في الدعم النفسي و القانوني. أنتِ في أمان.';
+return 'ما عنديش جواب مؤكد، نصحك تتواصلي مع خلية التكفل أو جمعية مختصة، أو تصلي بـ 8350 أو 2511. أنتِ في أمان.';}
+</script>
+</body>
+</html>
